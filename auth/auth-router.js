@@ -26,11 +26,13 @@ router.post("/login", async (req, res, next) => {
     try {
         const user = await Users.findBy({ username: req.body.username }).first()
 
+        console.log(user)
         if (!user) {
             res.status(401).json({ message: "Invalid username" })
         }
 
-        const validPassword = await bcrypt.compare(req.body.password, user.password)
+        const { password } = req.body
+        const validPassword = await bcrypt.compareSync(password, user.password)
 
         if (!validPassword) {
             res.status(401).json({ message: "Invalid password" })

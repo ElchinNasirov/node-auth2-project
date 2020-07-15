@@ -3,7 +3,8 @@ const jwt = require("jsonwebtoken")
 const restrict = () => {
     return async (req, res, next) => {
         try {
-            const token = req.cookies.token
+            const token = req.headers.authorization
+
             if (!token) {
                 return res.status(401).json({ message: "You shall not pass" })
             }
