@@ -1,7 +1,7 @@
 const server = require("./server")
 
-const PORT = process.envPORT || 5000
+const PORT = process.env.PORT || 5000
 
 server.listen(PORT, () => {
-    console.log(`===SERVER RUNNING ON PORT ${PORT}`)
+    console.log(`== SERVER RUNNING ON PORT ${PORT} ==`)
 })
